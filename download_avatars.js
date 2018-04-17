@@ -1,7 +1,8 @@
 var request = require('request');
 var fs = require('fs');
 var myAuth = require('./secrets.js');
-
+var owner = process.argv[2];
+var repo = process.argv[3];
 
 function getRepoContributors(repoOwner, repoName, cb) {
   var options = {
@@ -29,6 +30,6 @@ function downloadImageByURL(url, filePath) {
   request.get(url).pipe(fs.createWriteStream(filePath));
 }
 
-getRepoContributors("jquery", "jquery", downloadImageByURL);
+getRepoContributors(owner, repo, downloadImageByURL);
 
 console.log('Saved images!');
